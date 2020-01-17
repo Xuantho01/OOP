@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Temperature</title>
+</head>
+<body>
+<script>
+  function Temp(C){
+      this.C = C;
+      this.Fahrenheit = function (C) {
+          return (this.C - 32)*0.55;
+      };
+      this.Kelvin = function (C) {
+          return (this.C + 273*15);
+      }
+  }
+  let temp_c = prompt("Enter temperature in Celcius: ");
+  let temperature = new Temp(temp_c);
+  alert("F = "+temperature.Fahrenheit() + ", K = " + temperature.Kelvin());
+</script>
+</body>
+</html>
+</body>
+</html>
