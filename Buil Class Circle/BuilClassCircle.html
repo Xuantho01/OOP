@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buil Class Circle</title>
+</head>
+<body>
+<canvas id = "myCanvas" width = "400" height="300" style = "border: 1px black solid"></canvas>
+<button onclick="runningCircle()"> Vẽ hình tròn</button>
+<script>
+    const STEP = 5;
+    let Circle = function(x,y,radius,color){
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color= color;
+        this.changeCoordination = function(newX,newY){
+            this.x = newX;
+            this.y = newY;
+        };
+        // this.getRadius = function(){
+        //     return radius;
+        // };
+        this.getArea = function(){
+            return Math.PI*radius*radius;
+        };
+        this.setColor = function (color){
+            this.color = color;
+        };
+        this.toString = function(){
+            let str = "";
+            str += "<br>Ban kinh la: "+ this.radius;
+            str +="<br>Mau la: "+ this.color;
+            return str;
+        };
+        this.clear = function(canvas){
+            let ctx = canvas.getContext("2d");
+            ctx.clearRect(this.x - this.radius - STEP,this.y - this.radius - STEP,
+                    2*this.radius+STEP,2*this.radius+STEP );
+        };
+        this.draw = function(canvas){
+            let ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+            ctx.stroke();
+        };
+    };
+    function veHinhTron(canvas,circle){
+            circle.clear(canvas);
+            circle.draw(canvas);
+            circle.changeCoordination(circle.x+5, circle.y+5);
+           setTimeout(function() {veHinhTron(canvas,circle);},100);
+    }
+    function runningCircle(){
+        let circle = new Circle(100,100,20,"red");
+        let canvas = document.getElementById("myCanvas");
+        veHinhTron(canvas,circle);
+    }
+
+    // let circle = new Circle(2);
+    // alert("radius: "+ circle.getRadius() + ", area: "+ circle.getArea());
+</script>
+</body>
+</html>

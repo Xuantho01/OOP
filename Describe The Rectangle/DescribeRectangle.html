@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>building Describe The Recrangle</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1300" height="700" style="border:1px solid #d3d3d3;"></canvas>
+    <script>
+
+        function Rectangle(a,b){
+            this.a = a;
+            this.b = b;
+            this.seta = function(a){
+                this.a = a;
+            };
+            this.setb = function(b){
+                this.b = b;
+            };
+            this.geta = function(){
+                return this.a;
+            };
+            this.getb = function(){
+                return this.b;
+            };
+            this.Are = function(){
+                return this.a*this.b;
+            };
+            this.Perimeter = function(){
+                return 2*this.a*this.b;
+            };
+
+
+
+       this.builRectengle = function(){
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+            var rec = new Rectangle();
+            var A = rec.geta();
+            var B = rec.getb();
+            ctx.moveTo(0,0);
+            ctx.lineTo(A,B);
+            ctx.stroke();
+        }
+        }
+        let rectangle = new Rectangle(500,800);
+        alert(rectangle.Are() +', '+rectangle.Perimeter());
+        builRectengle();
+        rectangle.seta(400);
+        rectangle.setb(500);
+        alert(rectangle.Are() +', '+rectangle.Perimeter());
+        builRectengle();
+    </script>
+</body>
+</html>
