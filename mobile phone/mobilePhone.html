@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MobilePhone</title>
+</head>
+<body>
+<script>
+    function Mobile(battery) {
+
+        this.battery = battery;
+        this.draft = "";
+        this.status = false;
+        this.inbox = [];
+        this.sent = [];
+
+        this.checkStatus = function () {
+            return (this.battery >0);
+        }
+
+        this.onOff = function () {
+            this.status = !this.status;
+        }
+
+        this.charge = function () {
+            if (this.battery <100)
+                this.battery ++;
+        }
+
+        this.textMessage = function (text) {
+            this.draft = text;
+            this.battery --;
+        }
+
+        this.setInbox = function (mobile) {
+            this.inbox.push(mobile.draft);
+            mobile.sent.push(mobile.draft);
+            mobile.draft = "";
+            this.battery --;
+        }
+        this.setSent = function (mobile) {
+            this.sent.push(this.draft);
+            mobile.inbox.push(this.draft);
+            this.draft = "";
+            this.battery --;
+        }
+
+
+        this.getInbox = function () {
+            this.battery --;
+            return this.inbox;
+        }
+
+        this.getSent = function () {
+            this.battery --;
+            return this.sent;
+        }
+
+    }
+
+    let mobileOfPhong = new Mobile(5);
+    let mobileOfDoan = new Mobile(4);
+</script>
+</body>
+</html>
