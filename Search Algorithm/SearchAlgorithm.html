@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let a = new Array();
+        let count = 0;
+
+        function init(n) {
+            for(let i=0; i<n; i++){
+                a.push(Math.round(Math.random()*1000));
+            }
+        }
+
+        function show(n) {
+            for(let i =0;i<n; i++){
+                document.write('<br>'+i+"  :  "+ a[i]);
+            }
+        }
+
+        function sequentialSearch(x, n) {
+            let indArr = new Array();
+            for(let i=0; i<n; i++)
+                if(a[i]==x)
+                    indArr.push(i);
+            return indArr;
+        }
+
+        function binarySearch(x, i, j) {
+            if(i>j)
+                return -1;
+            let m = Math.round((i+j)/2);
+            if(a[m] == x)
+                return m;
+
+            if(a[m] > x)
+                j = m;
+
+            else
+                i = m;
+
+            return binarySearch(x, i, j);// Goi de quy
+        }
+
+
+        function main() {
+            count = prompt("Nhap so phan tu cua mang: ");
+            count = parseInt(count);
+            init(count);
+            show(count);
+            /*
+                         let x = prompt("nhap gia tri can tim ");
+                         x = parseInt(x);
+                         //Tim kiem tuan tu
+                         let pos = sequentialSearch(x, count);
+                         if(pos.length != 0){
+                             let i;
+                             let str = "Tim thay o vi tri: ";
+                             for(i in pos)
+                                 str += pos[i] + ",";
+                             alert(str);
+                         }
+                         else
+                             alert("Khong tim thay");
+
+                         //Tim kiem nhi phan
+                         a.sort(function (a,b) {
+                             return a-b;
+                         });
+
+
+                         let bPos = binarySearch(x, 0, count-1);
+                         if(bPos == -1)
+                             alert("Khong tim thay");
+                         else
+                             alert("Tim thay o vi tri: "+ bPos);
+                             */
+
+            quickSort(0,a.length-1);
+            document.write("sau khi sap xep: "+"<br>");
+            show(count);
+        }
+
+        //Sap xep
+
+        //Sap xep lua chon
+        function selectionSort() {
+            let i, j, tmp;
+            let min, pMin;
+            for(i = 0; i < a.length-1; i++) {
+                min = a[i];
+                pMin = i;
+                for (j = i + 1; j < a.length; j++){
+                    if(a[j] < min){
+                        min = a[j];
+                        pMin = j;
+                    }
+                }
+                if(a[i] != min){
+                    tmp = a[i];
+                    a[i] = a[pMin];
+                    a[pMin] = tmp;
+                }
+            }
+
+        }
+        // sắp xếp chèn
+        function insertionSort(){
+            let i,j, min;
+            for(i = 0; i < a.length - 1; i++){
+                min = a[a.length - 1];
+                for( j = a.length - 1; j > i; j--){
+                    if(a[j - 1] < min){
+                        a[j] = min;
+                        min = a[j -1];
+                    }
+                    else{
+                        a[j] = a[j -1];
+                    }
+                }
+                a[i] = min;
+            }
+        }
+        // sắp xếp nổi bọt
+
+        function bubbleSort (){
+            let i, j , tmp;
+            for (i = a.length - 1; i > 0; i--){
+                for(j = 0; j < i; j++){
+                    if(a[j] > a[j + 1]){
+                        tmp = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+        // quick sort
+        function partition(left,right){
+            let i, j,k, pos;
+            pos = Math.round((left+right)/2);
+            let posVal = a[pos];
+            i = left;
+            j = right;
+            while(i < j){
+                while(a[i] < posVal){
+                    i++;
+                }
+                while(a[j] >= posVal){
+                    j--;
+                }
+                if(i < j){
+                    tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+            }
+            // đưa gia trị chốt về bên trái nhất của dãy bên phải
+            let min = a[i];
+            let pMin = i;
+            for( k = i+1; k <= right; k++){
+                if(a[k] < min){
+                    min = a[k];
+                    pMin = k;
+                }
+            }
+            if(pMin != i){
+                tmp = a[i];
+                a[i] = a[pMin];
+                a[pMin] = tmp;
+            }
+            return i;
+        }
+        function quickSort(left,right ){
+            if(left >= right){
+                return;
+            }
+            let m = partition(left,right);   // chia
+            quickSort(left, m - 1);  // trị
+            quickSort(m + 1, right);// trị
+
+        }
+        main();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
