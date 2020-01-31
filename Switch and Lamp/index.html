@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch And Lamp</title>
+    <script src="Js.js"></script>
+</head>
+<body>
+<script>
+    let count = 0;
+    let switchbutton = new switchButton(false);
+    let electric = new electricLamp(false);
+
+    while(count < 10){
+        switchbutton.switchOn(electric);
+        switchbutton.switchOff(electric);
+        count++;
+    }
+</script>
+</body>
+</html>
