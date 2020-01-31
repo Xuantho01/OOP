@@ -33,7 +33,7 @@ function Human(name,gender,weight){
     else{
         this.gender = "input type not true";
     }
-    this.weight = parseInt(weight);
+    this.weight = weight;
 
     this.checkApple = function(apple){
         if(!apple.isEmpty()){
@@ -46,7 +46,7 @@ function Human(name,gender,weight){
         }
     };
     this.eat = function(apple){
-     if(apple.checkApple()){
+     if(this.checkApple(apple)){
          apple.decrease();
          this.increase();
          console.log(this.name + ": So good");
@@ -75,3 +75,6 @@ function Human(name,gender,weight){
 let apple = new Apple();
 let adam = new Human('adam','male',70);
 let eva = new Human('eva','female',25);
+adam.eat(apple);
+adam.getWeight();
+adam.checkApple(apple);
