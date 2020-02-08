@@ -1,15 +1,15 @@
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 var ball = {
-     x : 150,
-     y : 150,
-     dx : 10,
-     dy : 5,
-     radius : 20
+     x : 50,
+     y : 350,
+     dx : 5,
+     dy : 3,
+     radius : 10
  };
  var paddle = {
-     width: 70,
-     height: 10,
+     width: 50,
+     height: 5,
      x : 0,
      y : canvas.height - 10,
      speed: 15,
@@ -22,8 +22,8 @@ var ball = {
      offsetY: 25,
      margin: 25,
      width: 70,
-     height: 15,
-     totalRow: 3,
+     height: 10,
+     totalRow: 7,
      totalCol: 5
  };
  var BrickList = [];
@@ -32,7 +32,7 @@ var ball = {
          BrickList.push({
              x: BrickConfig.offsetX + j*(BrickConfig.width + BrickConfig.margin),
              y: BrickConfig.offsetY + i*(BrickConfig.height + BrickConfig.margin),
-             isBroken: false
+            isBroken: false
          });
      }
  }
@@ -65,7 +65,7 @@ document.addEventListener('keydown',function (event){
 function drawBall() {
     context.beginPath();
     context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    context.fillStyle = 'red';
+    context.fillStyle = '#808000';
     context.fill();
     context.closePath();
 }
@@ -73,7 +73,7 @@ function drawPaddle(){
     context.beginPath();
     context.rect(paddle.x,paddle.y,paddle.width,paddle.height);
     //console.log('x: '+paddle.x + 'y : '+paddle.y + 'width: '+ paddle.width);
-   // context.fillStyle = 'red';
+   context.fillStyle = '#800000';
     context.fill();
     context.closePath();
 }
@@ -88,7 +88,7 @@ function drawBricks(){
             context.beginPath();
             context.rect(
                 b.x,
-                b.y,
+               b.y,
                 BrickConfig.width,
                 BrickConfig.height
             );
